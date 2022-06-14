@@ -1,0 +1,61 @@
+body {
+  background-color: rgb(255, 255, 255);
+  background-size: 100%;
+  background-position: center
+}
+
+.logo-hexa{
+  max-height: 100px;
+  margin-left : 5%;
+  margin-top : 2%;
+}
+
+.logo-hexa_2{
+  height: 600px;
+}
+
+.logo-hexa_3{
+  max-height: 100px;
+}
+
+.center{
+  display : flex ;
+  justify-content: center;
+}
+
+.ml3 {
+  font-weight: 900;
+  font-size: 12vw;
+  color: rgb(240, 217, 10);
+  margin-left : 3%;
+  text-shadow: 1px 1px 2px #310046;
+}
+
+.text-color-white {
+  margin-top:5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.read-content {
+  margin-left : 55px;
+  margin-right : 35px;
+  margin-top : 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.preview{
+  display: none; height: auto; width: 200px;
+}
+
+.article-image{
+  height: 150px;
+  width: 254px;
+}
+
+.violet{
+  background-color: #310046;
+  color :rgb(240, 217, 10);
+}
