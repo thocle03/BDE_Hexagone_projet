@@ -59,3 +59,9 @@ body {
   background-color: #310046;
   color :rgb(240, 217, 10);
 }
+
+.logologin{
+  display: flex;
+  justify-content: flex-end;
+  background-color: #368046;
+}

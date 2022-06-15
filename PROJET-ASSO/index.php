@@ -14,7 +14,7 @@
 
 <header class="p-3 text-white color_nav">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <div class="d-flex flex-wrap align-items-center ">
       <img class="logo-hexa_3" src="./images/Logo_BDE_3.svg" alt="logo_BDE">
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="./index.php" class="nav-link px-2 text-secondary">
@@ -27,9 +27,8 @@
           </a></li>
         <li><a href="./readAll.php" class="nav-link px-2 text-white"> Evènements</a></li>
         <li><a href="./create.php" class="nav-link px-2 text-white">création d'events</a></li>
-
       </ul>
-      <a style="float:right" class="user" href="./login.php"><img src="./images/image.jpg" style="width: 5%;"></a>
+      <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:5% !important; width: 77px !important;"></a>
     </div>
   </div>
 </header>

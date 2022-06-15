@@ -28,7 +28,7 @@
                     </a>
                 </li>
             </ul>
-            <a style="float:right" class="user" href="./login.php"></a><img src="./images/image.jpg" style="width: 5%;">
+            <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:45% !important; width: 77px !important;"></a>
         </div>
     </div>
 </header>
