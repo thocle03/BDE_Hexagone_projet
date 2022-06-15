@@ -41,7 +41,7 @@
     <div>
         <header class="w3-container w3-white ">
             <div class="position_1">
-                <h3 class="title"><?= $article->getTitle(); ?></h3>
+                <h3><?= $article->getTitle(); ?></h3>
                 <h6 class="modification">dernière modification: <?= $article->getCreated_at(); ?></h6>
             </div>
         </header>
