@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/acceuil.css" type="text/css">
     <link rel="stylesheet" href="./styles/nav.css" type="text/css">
-    <link rel="stylesheet" href="./styles/read.css" type="text/css">
-    <link rel="stylesheet" href="./styles/w3.css" type="text/css">
+     <link rel="stylesheet" href="./styles/read.css" type="text/css">
+   <!-- <link rel="stylesheet" href="./styles/w3.css" type="text/css">-->
     <title>read</title>
 </head>
 <header class="p-3 color_nav text-white">
@@ -41,15 +41,15 @@
     <div>
         <header class="w3-container w3-white ">
             <div class="position_1">
-                <h3><?= $article->getTitle(); ?></h3>
-                <h6>dernière modification: <?= $article->getCreated_at(); ?></h6>
+                <h3 class="title"><?= $article->getTitle(); ?></h3>
+                <h6 class="modification">dernière modification: <?= $article->getCreated_at(); ?></h6>
             </div>
         </header>
         <div class="w3-container">
             <hr>
             <div class="d-flex flex-row flex-wrap">
-                <div>
-                    <img src="<?= $article->getLien_image(); ?>" alt="..." class="w3-left w3-square image-size">
+                <div  class="image-size" id="conteneur">
+                    <img src="<?= $article->getLien_image(); ?>" alt="...">
                 </div>
                 <div class="text-properties">
                     <p><?= $article->getContent(); ?></p>
