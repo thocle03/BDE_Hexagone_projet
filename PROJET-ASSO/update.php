@@ -42,12 +42,14 @@
 <body>
     <?php
     
+    session_start();
 
     require "./controllers/ArticleManager.php";
     require "./models/Article.php";
+    require "./login.php";
 
     $manager = new ArticleManager();
-
+    if($_SESSION['status'] == True ){
     if ($_GET) {
         $article = $manager->get($_GET['id']);
     }
@@ -65,6 +67,7 @@
         $manager->update(new Article($donnees));
         header("Location: ./read.php?id={$_GET["id"]}");               
         exit();
+    }
     } ?>
     <div>
         <div>
@@ -72,9 +75,9 @@
         </div>
         <form method="POST" class="container mt-2">
             <label>Titre</label>
-            <input type="text" name="title" id="title" class="form-control mb-3" placeholder="titre de l'article" value="<?= $article->getTitle(); ?>">
+            <input type="text" name="title" id="title" class="form-control mb-3" placeholder="titre de l'event" value="<?= $article->getTitle(); ?>">
             <label>Contenu</label>
-            <textarea name="content" id="content" class="form-control mb-3" placeholder="Le contenu de l'article"><?= $article->getContent(); ?></textarea>
+            <textarea name="content" id="content" class="form-control mb-3" placeholder="Le contenu de l'event"><?= $article->getContent(); ?></textarea>
             <label>URL de l'image</label>
             <input type="url" name="lien_image" onkeyup="preview('lien_image')" id="lien_image" class="form-control" placeholder="lien de l'image " value="<?= $article->getLien_image(); ?>">
             <div id="preview"></div>

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
+<?php
+session_start();
+?>
 
 <head>
   <meta charset="UTF-8">
@@ -11,6 +14,15 @@
 
   <title>Acceuil</title>
 </head>
+
+<?php
+require "./controllers/UserManager.php";
+require "./models/User.php";
+require "./controllers/ArticleManager.php";
+require "./models/Article.php";
+
+
+?>
 
 <header class="p-3 text-white color_nav">
   <div class="container">
@@ -28,6 +40,11 @@
         <li><a href="./readAll.php" class="nav-link px-2 text-white"> Evènements</a></li>
         <li><a href="./create.php" class="nav-link px-2 text-white">création d'events</a></li>
       </ul>
+      <?php if ($_SESSION) { ?>
+        <?= $_SESSION['username'] ?><p>&ensp;</p>
+        <br>
+        <a style="text-decoration: none !important;color :#fff" href="logout.php">Logout</a>
+      <?php } ?>
       <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:5% !important; width: 77px !important;"></a>
     </div>
   </div>

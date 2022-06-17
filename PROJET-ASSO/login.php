@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -11,24 +13,28 @@
 
 <body>
     <?php
-
     /// NEED TO IMPLEMENT EMAIL CONFIRMATION AND MAKE SURE EMAIL DOMAIN EXISTS ! /// 
 
 
     require "./controllers/UserManager.php";
-    require "./models/user.php";
+    require "./models/User.php";
 
     if ($_POST) {
-        session_start();
+        $existingAccount = False;
+        if (isset($_POST["username"])) {
+            $username = $_POST["username"];
+        } else {
+            $username = "empty";
+            $existingAccount = True;
+        }
 
         $userData = [
-            "username" => $_POST['username'],
+            "username" => $username,
             "password" => $_POST['password'],
             "email" => $_POST['email']
         ];
 
 
-        $existingAccount = False;
         $findExistingUser = new UserManager();
         $users = $findExistingUser->getAll();
 
@@ -79,9 +85,18 @@
                             break;
                         }
                     }
+
+
                     if ($existingAccount == False) {
                         $findExistingUser->add(new User($userData));
-                        // echo "<script>window.location.href= 'index.php'</script>";
+                        echo "<script>window.location.href= 'login.php'</script>";
+                    }
+
+                    if ($existingAccount) { // si l'user existe et que le mdp est bon, on setup la $_SESSION et on retourne au index.php
+                        $_SESSION['username'] = $user->getUsername();
+                        $_SESSION["id"] = $user->getId();
+                        $_SESSION['status'] = $user->getStatus();
+                        echo "<script>window.location.href= 'index.php'</script>";
                     }
                 }
 
@@ -95,24 +110,23 @@
 
         <div class="signup">
             <form method="post" autocomplete="off">
-
                 <label for="chk" aria-hidden="true">Sign up</label>
                 <input type="text" name="username" id="username" placeholder="Username" required="">
-                <input type="email" name="email" class="form-control" id="email" aria-describedby="email-help" placeholder="Email" required="">
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="email-help" placeholder="Email" required="" pattern="+@ecole-hexagone\.com">
                 <input type="password" name="password" id="password" placeholder="Password" required="">
                 <input class="button" target="_blank" type="submit" value="Sign up"></input>
-                <!--<button>Sign up</button>-->
             </form>
         </div>
         <div class="login">
-            <form method="post" autocomplete="off" action="./index.php">
+            <form method="post" autocomplete="off">
                 <label for="chk" aria-hidden="true">Login</label>
                 <input type="email" name="email" id="email" placeholder="Email" required="">
-                <input type="password" id="password" name="password" placeholder="Password" required="">
+                <input type="password" id="password" name="password" placeholder="Password" required="" pattern="+@ecole-hexagone\.com">
                 <button class="button2" type="submit">Login</button>
             </form>
         </div>
     </div>
+
 
 
 

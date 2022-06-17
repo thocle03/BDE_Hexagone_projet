@@ -61,9 +61,9 @@
         </div>
         <form method="POST" class="container mt-2">
             <label>Titre</label>
-            <input type="text" name="title" id="title" class="form-control mb-3" placeholder="titre de l'article">
+            <input type="text" name="title" id="title" class="form-control mb-3" placeholder="titre de l'event">
             <label>Contenu</label>
-            <textarea name="content" id="content" class="form-control mb-3" placeholder="Le contenu de l'article"></textarea>
+            <textarea name="content" id="content" class="form-control mb-3" placeholder="Le contenu de l'event"></textarea>
             <label>URL de l'image</label>
             <input type="url" name="lien_image" onkeyup="preview('lien_image')" id="lien_image" class="form-control" placeholder="lien de l'image">
             <div id="preview"></div>

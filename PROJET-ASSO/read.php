@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -7,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/acceuil.css" type="text/css">
     <link rel="stylesheet" href="./styles/nav.css" type="text/css">
-     <link rel="stylesheet" href="./styles/read.css" type="text/css">
-   <!-- <link rel="stylesheet" href="./styles/w3.css" type="text/css">-->
+    <link rel="stylesheet" href="./styles/read.css" type="text/css">
+    <link rel="stylesheet" href="./styles/w3.css" type="text/css">
     <title>read</title>
 </head>
 <header class="p-3 color_nav text-white">
@@ -21,6 +23,9 @@
                 <li><a href="./readAll.php" class="nav-link px-2 text-white">Evènements</a></li>
                 <li><a href="./create.php" class="nav-link px-2 text-white">création d'events</a></li>
             </ul>
+            <?php if ($_SESSION) { ?>
+                <a style="text-decoration: none !important;color :#fff" href="logout.php">Logout</a>
+            <?php } ?>
             <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:45% !important; width: 77px !important;"></a>
         </div>
     </div>
@@ -28,8 +33,6 @@
 
 <body>
     <?php
-
-
     require "./controllers/ArticleManager.php";
     require "./models/Article.php";
     $manager = new ArticleManager();
@@ -42,14 +45,14 @@
         <header class="w3-container w3-white ">
             <div class="position_1">
                 <h3><?= $article->getTitle(); ?></h3>
-                <h6 class="modification">dernière modification: <?= $article->getCreated_at(); ?></h6>
+                <h6>dernière modification: <?= $article->getCreated_at(); ?></h6>
             </div>
         </header>
         <div class="w3-container">
             <hr>
             <div class="d-flex flex-row flex-wrap">
-                <div  class="image-size" id="conteneur">
-                    <img src="<?= $article->getLien_image(); ?>" alt="...">
+                <div>
+                    <img src="<?= $article->getLien_image(); ?>" alt="..." class="w3-left w3-square image-size">
                 </div>
                 <div class="text-properties">
                     <p><?= $article->getContent(); ?></p>
