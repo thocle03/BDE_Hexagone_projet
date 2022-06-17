@@ -41,66 +41,79 @@
         if (empty($userData['username'])) {
     ?> <script href="javascript:;">
                 alert("Name is required")
-            </script> <?php
-                        $existingAccount = True;
-                    }
+            </script>
+        <?php
+            $existingAccount = True;
+        }
 
-                    if (!preg_match("/^[a-zA-Z-' ]*$/", $userData['username'])) {
-                        ?> <script href="javascript:;">
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $userData['username'])) {
+        ?> <script href="javascript:;">
                 alert("Only letters and white spaces allowed")
-            </script> <?php
-                        $existingAccount = True;
-                    }
+            </script>
+        <?php
+            $existingAccount = True;
+        }
 
-                    if (empty($userData['email'])) {
-                        ?> <script href="javascript:;">
+        if (empty($userData['email'])) {
+        ?> <script href="javascript:;">
                 alert("Email is required")
-            </script> <?php
-                        $existingAccount = True;
-                    }
+            </script>
+        <?php
+            $existingAccount = True;
+        }
 
-                    if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
-                        ?> <script href="javascript:;">
+        if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
+        ?> <script href="javascript:;">
                 alert("Invalid email format")
-            </script> <?php
-                        $existingAccount = True;
-                    }
+            </script>
+            <?php
+            $existingAccount = True;
+        }
 
-                    foreach ($users as $user) {
-                        // echo  $user->getUsername()==$userData['username'] ? "1" : "2";
-                        if ($user->getUsername() == $userData['username']) {
-                        ?> <script href="javascript:;">
-                    alert("This username is already taken !")
-                </script> <?php
-                            $existingAccount = True;
-                            break;
-                        }
-                    }
-                    foreach ($users as $user) {
-                        if ($user->getEmail() == $userData['email'] && $existingAccount == False) {
-                            ?> <script href="javascript:;">
-                    alert("This email address is already taken !")
-                </script> <?php
-                            $existingAccount = True;
-                            break;
-                        }
-                    }
+        foreach ($users as $user) {
+            if ($user->getUsername() == $userData['username']) {
+                if ($userData['username'] == 'empty') { ?> <script href="javascript:;">
+                        alert("This username is already taken !")
+                    </script>
+                <?php }
+                $existingAccount = True;
+                break;
+            }
+        }
 
+        foreach ($users as $user) {
+            if ($user->getEmail() == $userData['email'] && $existingAccount == False) {
+                if ($userData['username'] == 'empty') { ?> <script href="javascript:;">
+                        alert("This email address is already taken !")
+                    </script>
+                <?php }
+                $existingAccount = True;
+                break;
+            }
+        }
 
-                    if ($existingAccount == False) {
-                        $findExistingUser->add(new User($userData));
-                        echo "<script>window.location.href= 'login.php'</script>";
-                    }
+        if ($existingAccount == False) {
+            $findExistingUser->add(new User($userData));
+            echo "<script>window.location.href= 'login.php'</script>";
+        }
 
-                    if ($existingAccount) { // si l'user existe et que le mdp est bon, on setup la $_SESSION et on retourne au index.php
-                        $_SESSION['username'] = $user->getUsername();
-                        $_SESSION["id"] = $user->getId();
-                        $_SESSION['status'] = $user->getStatus();
-                        echo "<script>window.location.href= 'index.php'</script>";
-                    }
-                }
+        if ($existingAccount) {
+            foreach ($users as $user) {
+                if ($user->getEmail() == $userData['email'] && $user->getPassword() == $userData['password']){
+            $_SESSION['username'] = $user->getUsername();
+            $_SESSION["id"] = $user->getId();
+            $_SESSION['status'] = $user->getStatus();
+            echo "<script>window.location.href= 'index.php'</script>";
+            }
+        }
+        ?> <script href="javascript:;">
+        alert("Invalid Login!")
+    </script>
+    <?php
+    }
+}
 
-                            ?>
+    ?>
 
     <!--<button class="bouton"><a href="index.php"><strong>Home</strong></a></button>
     <button class="bouton"><a href="logout.php"><strong>Logout</strong></a></button>-->
