@@ -27,8 +27,14 @@
 }
 
 .icon{
-    max-height : 2em;
+    height : 2em;
   }
+
+.icon_2{
+    width : 45px;
+    margin-left : 5px;
+    margin-top: 5px;
+}
 h3{
     font-weight: bolder;
 }

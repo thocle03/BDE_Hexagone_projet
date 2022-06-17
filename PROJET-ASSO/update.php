@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
+<?php session_start();  ?>
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +17,7 @@
 <header class="p-3 color_nav text-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            
+
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="javascript:;" onclick="history.back()" class="nav-link"><img class="icon" src="./images/arrow.svg" alt="flèche retour"> </a></li>
@@ -41,37 +42,35 @@
 
 <body>
     <?php
-    
-    session_start();
+
 
     require "./controllers/ArticleManager.php";
     require "./models/Article.php";
-    require "./login.php";
+
 
     $manager = new ArticleManager();
-    if($_SESSION['status'] == True ){
-    if ($_GET) {
-        $article = $manager->get($_GET['id']);
-    }
+    if ($_SESSION['status'] == True) {
+        if ($_GET) {
+            $article = $manager->get($_GET['id']);
+        }
 
-    if ($_POST) {
+        if ($_POST) {
 
-        $donnees = [
-            "id" => $_GET["id"],
-            "content" => $_POST["content"],
-            "author" => $_POST["author"],
-            "title" => $_POST["title"],
-            "lien_image" => $_POST["lien_image"]    
-        ];
+            $donnees = [
+                "id" => $_GET["id"],
+                "content" => $_POST["content"],
+                "title" => $_POST["title"],
+                "lien_image" => $_POST["lien_image"]
+            ];
 
-        $manager->update(new Article($donnees));
-        header("Location: ./read.php?id={$_GET["id"]}");               
-        exit();
-    }
+            $manager->update(new Article($donnees));
+            header("Location: ./read.php?id={$_GET["id"]}");
+            exit();
+        }
     } ?>
     <div>
         <div>
-            <img src="https://prepeersstorage.blob.core.windows.net/academic/342_logo.png?sp=rl&st=2021-12-31T17:23:57Z&se=2022-12-31T17:23:00Z&sv=2020-08-04&sr=c&sig=SDDHph6sgvvHddvrug4O1jhZy3LU1U78BVN%2BDJjRB5M%3D" alt="Erreur" style="max-height: 100px; margin-left : 70px;">
+            <img class="logo-hexa" src="./images/Logo_BDE.svg" alt="Erreur">
         </div>
         <form method="POST" class="container mt-2">
             <label>Titre</label>

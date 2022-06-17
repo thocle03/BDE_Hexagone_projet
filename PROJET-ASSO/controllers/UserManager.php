@@ -6,10 +6,10 @@ class UserManager
 
     public function __construct()
     {
-        $dbName = "blog";
-        $port = 3307;
+        $dbName = "BDE";
+        $port = 8888;
         $username = "root";
-        $password = "root";
+        $password = "1DCF17F798";
         try {
             $this->setDb(new PDO("mysql:host=localhost;dbname=$dbName;port=$port", $username, $password));
         } catch (PDOException $error) {

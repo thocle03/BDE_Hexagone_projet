@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./styles/nav.css" type="text/css">
     <link rel="stylesheet" href="./styles/read.css" type="text/css">
     <link rel="stylesheet" href="./styles/w3.css" type="text/css">
+    <link rel="stylesheet" href="./styles/dropdown.css" type="text/css">
     <title>read</title>
 </head>
 <header class="p-3 color_nav text-white">
@@ -23,10 +24,15 @@
                 <li><a href="./readAll.php" class="nav-link px-2 text-white">Evènements</a></li>
                 <li><a href="./create.php" class="nav-link px-2 text-white">création d'events</a></li>
             </ul>
-            <?php if ($_SESSION) { ?>
-                <a style="text-decoration: none !important;color :#fff" href="logout.php">Logout</a>
-            <?php } ?>
-            <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:45% !important; width: 77px !important;"></a>
+            <div class="dropdown">
+                <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="width: 77px !important;"></a>
+                <?php if ($_SESSION) { ?>
+                    <div class="dropdown-content">
+                        <a style="color : black;"><?= $_SESSION['username'] ?> </a>
+                        <a style="color : black" href="logout.php">Logout</a>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
 </header>

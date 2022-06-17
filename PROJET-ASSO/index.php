@@ -11,6 +11,7 @@ session_start();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="./styles/acceuil.css" type="text/css">
   <link rel="stylesheet" href="./styles/nav.css" type="text/css">
+  <link rel="stylesheet" href="./styles/dropdown.css" type="text/css">
 
   <title>Acceuil</title>
 </head>
@@ -40,21 +41,26 @@ require "./models/Article.php";
         <li><a href="./readAll.php" class="nav-link px-2 text-white"> Evènements</a></li>
         <li><a href="./create.php" class="nav-link px-2 text-white">création d'events</a></li>
       </ul>
-      <?php if ($_SESSION) { ?>
-        <?= $_SESSION['username'] ?><p>&ensp;</p>
-        <br>
-        <a style="text-decoration: none !important;color :#fff" href="logout.php">Logout</a>
-      <?php } ?>
-      <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:5% !important; width: 77px !important;"></a>
+
+      <div class="dropdown">
+        <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="width: 77px !important;"></a>
+        <?php if ($_SESSION) { ?>
+          <div class="dropdown-content">
+            <a style="color : black;"><?= $_SESSION['username'] ?> </a>
+            <a style="color : black" href="logout.php">Logout</a>
+          </div>
+        <?php } ?>
+      </div>
+
     </div>
   </div>
 </header>
 
 <body>
+
   <div class="center">
     <img class="logo-hexa_2" src="./images/tmp_720d74f4-c48d-488a-bd11-053166ec5736.jpg" alt="">
   </div>
-
 
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -62,6 +68,7 @@ require "./models/Article.php";
   <script src="./javascript/acceuil.js"></script>
   <script src="./javascript/nav.js"></script>
   <script src="./javascript/eye.js"></script>
+
 
 </body>
 

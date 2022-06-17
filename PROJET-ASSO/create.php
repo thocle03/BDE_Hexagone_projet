@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr-FR">
+<?php
+session_start();
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -9,12 +12,13 @@
     <link rel="stylesheet" href="./styles/acceuil.css" type="text/css">
     <link rel="stylesheet" href="./styles/nav.css" type="text/css">
     <link rel="stylesheet" href="./styles/preview.css" type="text/css">
+    <link rel="stylesheet" href="./styles/dropdown.css" type="text/css">
     <title>création d'events</title>
 </head>
 <header class="p-3 color_nav text-white">
     <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <img class = "logo-hexa_3" src="./images/Logo_BDE_3.svg" alt="logo_BDE">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <img class="logo-hexa_3" src="./images/Logo_BDE_3.svg" alt="logo_BDE">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="./index.php" class="nav-link px-2 text-white">Acceuil</a></li>
                 <li><a href="./readAll.php" class="nav-link px-2 text-white">Evènements</a></li>
@@ -28,7 +32,15 @@
                     </a>
                 </li>
             </ul>
-            <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="margin-left:45% !important; width: 77px !important;"></a>
+            <div class="dropdown">
+                <a href="./login.php" class="ml-auto"><img src="./images/log_in_v3.png" style="width: 77px !important;"></a>
+                <?php if ($_SESSION) { ?>
+                    <div class="dropdown-content">
+                        <a style="color : black;"><?= $_SESSION['username'] ?> </a>
+                        <a style="color : black" href="logout.php">Logout</a>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
 </header>
@@ -53,7 +65,7 @@
         header("Location: read.php?id={$id}");
         exit();
     }
-    
+
     ?>
     <div>
         <div>
@@ -68,7 +80,7 @@
             <input type="url" name="lien_image" onkeyup="preview('lien_image')" id="lien_image" class="form-control" placeholder="lien de l'image">
             <div id="preview"></div>
             <input type="submit" value="Publier" class=" mt-3 btn btn-primary">
-           
+
         </form>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
