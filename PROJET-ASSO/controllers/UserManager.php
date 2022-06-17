@@ -44,7 +44,7 @@ class UserManager
     }
 
     public function get(int $id)
-     {
+    {
         $req = $this->db->prepare("SELECT * FROM `user` WHERE id = :id");
         $req->bindValue(":id", $id, PDO::PARAM_INT);
         $req->execute();
@@ -74,5 +74,18 @@ class UserManager
         $req->bindValue(":id", $id, PDO::PARAM_INT);
         $req->execute();
     }
+
+    public function getStatus(): array
+    {
+        $users = [];
+        $req = $this->db->query("SELECT * FROM `user` ORDER BY 'status'");
+        $req->execute();
+
+        $donnees = $req->fetchAll();
+        foreach ($donnees as $donnee) {
+            $users[] = new User($donnee);
+        }
+
+        return $users;
+    }
 }
-?>

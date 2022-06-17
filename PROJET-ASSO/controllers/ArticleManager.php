@@ -92,6 +92,7 @@ class ArticleManager
         return $articles;
     }
 
+
     public function getAllTitle(): array
     {
         $articles = [];
@@ -119,4 +120,6 @@ class ArticleManager
 
         return $articles;
     }
+
+   
 }
